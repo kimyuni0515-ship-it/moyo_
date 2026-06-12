@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MOYO</title>
+    <script type="text/javascript">
+      // 💡 404 에러가 나자마자 사용자가 눈치채지 못하게 0초만에 홈 화면으로 강제 리다이렉트 시키는 코드야!
+      var segmentCount = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=' +
+        l.pathname.split('/').slice(1 + segmentCount).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body>
+    <p style="text-align: center; margin-top: 20%; font-family: sans-serif; color: #666;">
+      잠시 후 홈 화면으로 이동합니다...
+    </p>
+  </body>
+</html>
