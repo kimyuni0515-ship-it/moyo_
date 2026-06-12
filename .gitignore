@@ -3,7 +3,7 @@
 .pnpm-store/
 
 # Build outputs
-dist/
+# dist/  # GitHub Pages 배포를 위해 dist/public은 포함
 build/
 *.dist
 
