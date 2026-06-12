@@ -5,7 +5,8 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -15,6 +16,17 @@ import Schedule from "./pages/Schedule";
 import Results from "./pages/Results";
 
 function Router() {
+  const [location, setLocation] = useLocation();
+
+  // Handle GitHub Pages query parameter redirect
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirectPath = params.get('0');
+    if (redirectPath) {
+      setLocation('/' + redirectPath);
+    }
+  }, [setLocation]);
+
   return (
     <Switch>
       <Route path="/" component={Home} />
